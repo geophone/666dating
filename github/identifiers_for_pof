@@ -1,0 +1,159 @@
+
+#sign up ofc
+dfic("com.pof.android:id/sign_up_button")
+
+#set first name
+dfict("com.pof.android:id/first_name", f"{os.environ["NAME"]}")
+dfic("com.pof.android:id/create_account_first_name_next")
+
+#set gender
+dfuc('new UiSelector().text("Man")')
+dfic("com.pof.android:id/create_account_gender_next")
+
+#set white due to global racism also I'm white
+dfuc('new UiSelector().text("Caucasian")')
+dfic('com.pof.android:id/create_account_ethnicity_next')
+
+#set birthdate block
+dfic("com.pof.android:id/birth_date")
+
+dfic("com.pof.android:id/birth_month")
+dfuc('new UiSelector().text("January")')
+
+dfic('com.pof.android:id/birth_day')
+dfuc('new UiSelector().text("1")')
+
+dfic('com.pof.android:id/birth_year')
+sdtfuc(f'new UiSelector().text("{os.environ["BIRTH_YEAR"]}")')#unfortunately years above 17 aren't in view
+
+dfic('com.pof.android:id/styled_dialog_positive_button')
+dfic('com.pof.android:id/create_account_birthday_next')
+
+#set location (outside emu location setting)
+dfic('com.pof.android:id/country')
+dfuc('new UiSelector().textContains("United States")')
+
+
+dfic('com.pof.android:id/state_province')
+dfuc('new UiSelector().text("Colorado")')
+
+dfict('com.pof.android:id/city', 'Denver')
+dfict('com.pof.android:id/postal_code', '12345')
+
+dfic('com.pof.android:id/create_account_location_details_next')
+
+
+
+dfict('com.pof.android:id/email', os.environ['EMAIL'])
+
+dfic('com.pof.android:id/create_account_email_next')
+dfict('com.pof.android:id/username', f'{os.environ['EMAIL'].split('@')[0]}') # TODO better usename
+dfict('com.pof.android:id/password', f'{os.environ['PASSWORD']}')
+dfict('com.pof.android:id/password_confirm', f'{os.environ['PASSWORD']}')
+driver.hide_keyboard()
+dfic('com.pof.android:id/create_account_credentials_next')
+dfic('com.pof.android:id/create_account_complete_next')
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(1)')
+dfuc('new UiSelector().text("Hang out")')
+dfuc('new UiSelector().text("I want to date but nothing serious")')
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(12)')
+dfuc('new UiSelector().text("Yes").instance(1)')
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(17)')
+dfuc('new UiSelector().text("No").instance(2)')
+scroll_down_and_click_text()
+
+
+deviceSize = driver.get_window_size()
+screenWidth = deviceSize['width']
+dfict('com.pof.android:id/profession', 'Security Engineer')
+dfuc('new UiSelector().text("Bachelor\'s degree")')
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(5)')
+
+#VERY AMBITIOUS WAS NOT EASY
+e = dfu('new UiSelector().resourceId("com.pof.android:id/seek_bar")')
+
+y = e.location['y'] + e.size['height'] // 2
+x = e.location['x'] + 100
+end_x = x + e.size['width'] - 100
+
+finger = PointerInput(kind = "touch", name="finger")
+actions = ActionBuilder(driver, mouse=finger)
+
+actions.pointer_action.move_to_location(x, y)
+actions.pointer_action.pointer_down()
+actions.pointer_action.move_to_location(end_x, y)
+actions.pointer_action.pointer_up()
+actions.perform()
+
+scroll_down_and_click_text('Non-religious')
+scroll_down_and_click_text('None')
+scroll_down_and_click_text()
+
+
+# why are there so many pages
+# im going to make an app it's called let's fuck
+# you auto sign in with your number or email or whatever
+# can match anyone as soon as you dl and open app
+# no pic
+# no name
+# no age
+# loool
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(0)')
+
+#longest relationship scroll hmm.... was gonna max scroll right but just clicking it does 5 years which seems fine
+dfuc('new UiSelector().resourceId("com.pof.android:id/seek_bar").instance(0)')
+
+
+#eye color are u fucking kidding me
+# itis going other no nazi shit here
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(12)')
+
+sdtfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(15)')
+
+
+#yeah another scroll, we all 6 cause that's the click
+sdtfuc('new UiSelector().text("0.0")')
+
+sdtfuc('new UiSelector().text("Athletic")')
+scroll_down_and_click_text()
+
+
+
+#why is there more registration
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(5)')
+
+dfuc('new UiSelector().text("No").instance(0)')
+dfuc('new UiSelector().text("No").instance(1)')
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(13)')
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(16)')
+scroll_down_and_click_text()
+
+
+
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(0)')
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(3)')
+dfuc('new UiSelector().resourceId("com.pof.android:id/item_container").instance(7)')
+dfuc('new UiSelector().text("Both have passed away")')
+
+
+dfic('com.pof.android:id/seek_bar')
+dfuc('new UiSelector().className("android.widget.ImageView").instance(4)')
+
+
+dfit('com.pof.android:id/headline', '7 pages of registration are you kidding')
+scroll_down_and_click_text()
+
+
+dfit('com.pof.android:id/description', 'I am basically the second coming of machiavelli, jk, security engineer, massage therapist, swipe right if you do yoga and don\'t do drugs ty')
+scroll_down_and_click_text()
+
+
+for interest in ['gym', 'massage', 'fitness', 'aerial', 'lulz', 'running', 'strategy', 'sec']:
+    dfit('com.pof.android:id/input_interest', f'{interest}')
+    driver.execute_script("mobile: performEditorAction", {'action': 'done'})
+scroll_down_and_click_text()
+
+driver.quit()
+
+dfit('com.pof.android:id/phone_nr_field', os.environ['PHONE2'])
+dfic('com.pof.android:id/send_code_btn')
